@@ -1,6 +1,8 @@
 # TESTE TECNICO EMPRESTA BEM MELHOR 👍
-
- especialmente devido ao curto tempo que tive disponivel
+ 
+ 
+ Infelizmente não consegui deixar tudo como gostaria :(
+ Especialmente devido ao curto tempo que tive disponivel
  para desenvolver esse teste.
  Gostaria de mecionar algumas das coisas que,
  nao por desleixo ou falta de capacidade técnica,
