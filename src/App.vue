@@ -7,7 +7,7 @@
 </template>
 
 <script>
-
+import Vue from 'vue'
 import './style/style.css'
 import Header from './components/Header';
 import Home from './components/Home';

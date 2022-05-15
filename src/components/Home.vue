@@ -3,7 +3,7 @@
 
     <form @submit.prevent="enviar">
          <label for="valor">Valor:</label>
-        <input v-model="dados.valor_emprestimo" id="valor" type="number" name="valor"/>
+        <input required v-model="dados.valor_emprestimo" id="valor" type="float" name="valor"/>
         
         <label for="instituicao">Instituição:</label>
          <select multiple v-model="dados.instituicoes" id="instituicao" name="instituicao">
@@ -23,21 +23,22 @@
         </select>
         <button type="submit">Simular</button>
     </form>
-    
+    <div @click="mostraPopup = !mostraPopup" v-if="mostraPopup" class="main-popup">
     <div class="popup">
+      <span class="fechar">×</span>
       <div v-for="(simulacao, index) in (simulacao)" :key="index">
         <h2>{{index}}</h2>
         <span class="valor">R$ {{dados.valor_emprestimo}}</span>
-      
-          <div class="conteudo-simulacao" v-for="(simulacao, index) in (simulacao)" :key="index">
+          <div  class="conteudo-simulacao" v-for="(simulacao, index) in (simulacao)" :key="index">
             <span v-if="dados.parcela <= simulacao.parcelas">
-            {{simulacao.parcelas}} parcelas de R$ {{simulacao.valor_parcela}} <br>
+            {{simulacao.parcelas}} × de R$ {{simulacao.valor_parcela}} <br>
             </span>
             <span v-if="dados.parcela <= simulacao.parcelas">Taxa de juros: {{simulacao.taxa}}</span>
           </div>
           
       </div>
     </div>
+     </div>
   </main>
 </template>
 <script>
@@ -49,6 +50,8 @@ export default {
 
   data() {
       return {
+          mostraPopup: false,
+          
           simulacao: [],
 
           dados: {
@@ -79,11 +82,14 @@ export default {
          api.post('/simular', { valor_emprestimo: dados.valor_emprestimo,
                                 instituicoes: dados.instituicoes,
                                 convenios: dados.convenios,
-    parcela: 60}).then(response => {
+                                parcela: dados.parcela})
+                                .then(response => {
          this.simulacao = response.data;
+         this.mostraPopup = !this.mostraPopup;
         
          })
-      }
+      },
+
   }
 
 };
@@ -112,7 +118,8 @@ form label {
     display: flex;
     width: 50%;
     align-items: flex-start;
-    padding-top: 10px;
+    padding-top: 20px;
+    font-size: 1.2em;
 
 }
 
@@ -122,6 +129,10 @@ form input, select {
     width: 50%;
     border-radius: 5px;
     border: 1px solid rgb(197, 197, 197);
+}
+
+form input, select, option {
+  font-size: 1.01em
 }
 
 button {
@@ -152,17 +163,34 @@ h2 {
 button:hover {
     background-color: #c45800;
 }
-
+.main-popup {
+  width: 100%;
+  height: 120%;
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(165, 165, 165, 0.3);
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  }
 .popup {
+  background: #fff;
   width: 50%;
   height: 500px;
   border:1px solid var(--color-primary);
   border-radius: 10px;
   margin-bottom: 50px;
   overflow-y: scroll;
-  padding: 30px
-  
+  padding: 30px 60px;
+  box-shadow: 0 4px 16px #ef6c0031;
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+  
 .conteudo-simulacao {
   background-color: rgb(241, 241, 241);
   padding: 10px 10px;
@@ -184,6 +212,16 @@ button:hover {
 .conteudo-simulacao span:last-child {
   margin: 12px 0;
 }
+
+.fechar {
+  font-size: 1.4em;
+  font-weight: bolder;
+  color: var(--color-primary);
+  display: block;
+  text-align: right;
+  cursor: pointer;
+  padding: 10px;
+}
 @media (max-width: 1024px) {
   form input, select {
     width: 90%;
@@ -191,6 +229,7 @@ button:hover {
 
   .popup {
     width: 90%;
+    padding: 30px;
   }
 
   form label {

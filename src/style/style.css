@@ -15,3 +15,16 @@ html,
 body {
 background-color: #fff;
 }
+
+.popup::-webkit-scrollbar {
+    width: 6px;
+    margin: 10px 0;
+}
+  
+.popup::-webkit-scrollbar-track {
+    background: transparent;       
+}
+  
+.popup::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);  
+}
