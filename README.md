@@ -27,3 +27,5 @@
 
  PS: Precisei criar um novo middleware na api para
  liberar o CORS
+ 
+ PS2: Tentei upar a API para este repositorio, mas aparentemente o github nao me permite fazer isso, então aqui está o repositorio do teste da API https://github.com/HugoVersiani/empresta-teste-tecnico-api
