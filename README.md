@@ -4,12 +4,12 @@
  Infelizmente não consegui deixar tudo como gostaria :(
  Especialmente devido ao curto tempo que tive disponivel
  para desenvolver esse teste.
- Gostaria de mecionar algumas das coisas que,
- nao por desleixo ou falta de capacidade técnica,
+ Gostaria de mencionar algumas das coisas que,
+ não por desleixo ou falta de capacidade técnica,
  precisaram ser deixadas para o final e acabei nao
  conseguindo finalizar:
 
- 1 - A MASCARA DE INPUT VALOR NO FRONT:
+ 1 - A MÁSCARA DE INPUT VALOR NO FRONT:
  
  Perdi algum tempo tentando colocar e instalar
  pelo npm essa mascara, mas sempre dava erro e nao
@@ -21,9 +21,9 @@
  tentava instalar por npm o vue-multiselect mas
  dava erro e nao consegui ter tempo de pesquisar
 
- 3 - FUNCOES DO BACKEND:
+ 3 - FUNCÕES DO BACKEND:
  
- Estou deixando comentadas ate onde eu conseguir fazer
+ Estarei deixando comentadas até onde eu conseguir fazer
 
  PS: Precisei criar um novo middleware na api para
  liberar o CORS
